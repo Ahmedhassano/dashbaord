@@ -1,27 +1,51 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@layer components{
+    .HomeLayout{
+       display: grid;
+       gap: 0.5rem;
+       grid-template-columns: min-content 1fr;
+       grid-template-rows: min-content 1fr;
+       grid-template-areas:"aside header"
+                           "aside main";
+    }
+    .light-mode{
+        @apply bg-gray-200 text-black 
+    }
+    .dark-mode{
+        @apply bg-slate-800  text-white 
+    }
+   .table-container{
+    @apply w-full min-h-[85%] my-2 
+           flex flex-col justify-between  
+           dark:dark-mode light-mode
+           overflow-x-auto
+   }
+    .table{
+     @apply w-full 
+   } 
+   .table-row{
+    @apply w-full  h-10 border-b-2  border-solid border-b-gray-500 hover:bg-[#80808048] cursor-pointer
+   }
+  .table-header{
+    @apply first-letter:uppercase whitespace-nowrap text-left font-medium
+          bg-violet-900 dark:text-gray-300 text-black 
+  } 
+ .table-td{
+  @apply text-gray-400 text-sm whitespace-nowrap
+ }
 }
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@layer base{
+*::-webkit-scrollbar{
+  @apply w-1 h-1 bg-[#80808087] 
+}    
+*::-webkit-scrollbar-thumb {
+  @apply  bg-[#808080a9]  rounded-full
+}   
+input,button{
+ outline: none;
+ border: none;
+ background-image:  radial-gradient();
+} 
 }
